@@ -18,6 +18,7 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime dateTime;
     private int seatNumber;
     private int rowNumber;
