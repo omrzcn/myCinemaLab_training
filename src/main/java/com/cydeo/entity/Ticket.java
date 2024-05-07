@@ -23,10 +23,10 @@ public class Ticket {
     private int seatNumber;
     private int rowNumber;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private MovieCinema movieCinema;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private UserAccount userAccount;
 
 
