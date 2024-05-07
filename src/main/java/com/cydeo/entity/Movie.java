@@ -1,7 +1,7 @@
 package com.cydeo.entity;
 
-import com.cydeo.enums.State;
-import com.cydeo.enums.Type;
+import com.cydeo.enums.MovieState;
+import com.cydeo.enums.MovieType;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,15 +19,22 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     private Integer duration;
     private String name;
     private BigDecimal price;
+
+    @Column(columnDefinition = "DATE")
     private LocalDate releaseDate;
+
     @Enumerated(EnumType.STRING)
-    private State state;
+    private MovieState state;
+
+    @Column(columnDefinition = "text") // if we put text it means there is no limit to write. not varchar(255)
     private String summary;
+
     @Enumerated(EnumType.STRING)
-    private Type type;
+    private MovieType type;
 
     @ManyToMany(mappedBy = "movieList")
     private List<Genre> genreList;
@@ -38,7 +45,7 @@ public class Movie {
 
 
 
-    public Movie(Integer duration, String name, BigDecimal price, LocalDate releaseDate, State state, String summary, Type type) {
+    public Movie(Integer duration, String name, BigDecimal price, LocalDate releaseDate, MovieState state, String summary, MovieType type) {
         this.duration = duration;
         this.name = name;
         this.price = price;
