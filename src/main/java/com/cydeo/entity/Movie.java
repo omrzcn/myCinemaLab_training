@@ -36,11 +36,14 @@ public class Movie {
     @Enumerated(EnumType.STRING)
     private MovieType type;
 
-    @ManyToMany(mappedBy = "movieList")
+    @ManyToMany
+    @JoinTable(name = "movie_genre_rel",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private List<Genre> genreList;
 
-    @OneToMany(mappedBy = "movie")
-    private List<MovieCinema> movieCinema;
+//    @OneToMany(mappedBy = "movie")
+//    private List<MovieCinema> movieCinema;
 
 
 

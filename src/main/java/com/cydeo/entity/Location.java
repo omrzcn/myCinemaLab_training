@@ -22,8 +22,8 @@ public class Location {
     private String state;
     private String city;
 
-    @OneToMany(mappedBy = "location")
-    private List<Cinema> cinemaList;
+//    @OneToMany(mappedBy = "location")
+//    private List<Cinema> cinemaList;   we dont have to write this because we used ManyToOne in Cinema class
 
     public Location(String name, String address, String postalCode, String country, String state, String city) {
         this.name = name;

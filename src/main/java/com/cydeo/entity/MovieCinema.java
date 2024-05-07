@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "movie_cinema")
 @Data
 @NoArgsConstructor
 public class MovieCinema {
@@ -18,13 +17,20 @@ public class MovieCinema {
     private Long id;
 
 
+    @Column(columnDefinition = "DATE")
     private LocalDate dateTime;
 
-    @ManyToOne
-    private Cinema cinema;
+    // ManyToMany is Fetch.LAZY, so we dont have to write anything
+    // ManyToOne is Fetch.EAGER, so we can write Fetch.LAZY
+    // OneToMany is Fetch.LAZY, so we dont wrote anything
+    // OneToOne is Fetch.EAGER, so we can write Fetch.LAZY .......these are all about performance. Fetch.LAZY is good to use it.
+    // FETCH is gonna be good to use in big datas.
+    @ManyToOne(fetch = FetchType.LAZY) // it means that when we run the application its gonna fetch when we needed
+    //FetchType.EAGER) it means when we run, it will fetch immediatly
+    private Cinema cinema; // buraya ManyToOne yazdigimiz icin sinemada OneToMany yazmamiza gerek yok
 
-    @ManyToOne
-    private Movie movie;
+    @ManyToOne(fetch = FetchType.LAZY) //
+    private Movie movie; // bunu buraya yazdiysak, Movie sinifinda OneToMany yazmamiza gerek yok
 
     @OneToMany(mappedBy = "movieCinema")
     private List<Ticket> ticketList;

@@ -20,11 +20,11 @@ public class Cinema {
     private String sponsoredName;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Location location;
 
-    @OneToMany(mappedBy = "cinema")
-    private List<MovieCinema> movieCinemaList;
+//    @OneToMany(mappedBy = "cinema")
+//    private List<MovieCinema> movieCinemaList;
 
     public Cinema(String name, String sponsoredName, Location location) {
         this.name = name;

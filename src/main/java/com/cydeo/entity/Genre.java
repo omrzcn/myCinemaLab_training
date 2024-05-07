@@ -17,11 +17,7 @@ public class Genre {
     private Long id;
     private String name;
 
-    @ManyToMany
-    @JoinTable(name = "movie_genre_rel",
-            joinColumns = @JoinColumn(name = "genre_id"),
-            inverseJoinColumns = @JoinColumn(name = "movie_id"))
-    private List<Movie> movieList;
+
 
 
     public Genre(String name) {
