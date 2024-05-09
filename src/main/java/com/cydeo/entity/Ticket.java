@@ -4,12 +4,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
-@Table(name = "ticket")
 @NoArgsConstructor
 @Data
 public class Ticket {
@@ -27,7 +24,7 @@ public class Ticket {
     private MovieCinema movieCinema;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private UserAccount userAccount;
+    private User userAccount;
 
 
     public Ticket(LocalDateTime dateTime, int seatNumber, int rowNumber) {

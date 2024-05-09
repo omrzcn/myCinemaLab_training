@@ -17,7 +17,7 @@ public class MovieCinema {
     private Long id;
 
 
-    @Column(columnDefinition = "DATE")
+    @Column(columnDefinition = "TIMESTAMP")
     private LocalDate dateTime;
 
     // ManyToMany is Fetch.LAZY, so we dont have to write anything
@@ -32,8 +32,8 @@ public class MovieCinema {
     @ManyToOne(fetch = FetchType.LAZY) //
     private Movie movie; // bunu buraya yazdiysak, Movie sinifinda OneToMany yazmamiza gerek yok
 
-    @OneToMany(mappedBy = "movieCinema")
-    private List<Ticket> ticketList;
+//    @OneToMany(mappedBy = "movieCinema")
+//    private List<Ticket> ticketList;  we put ManyToOne in Ticket class that's why we dont have to write OneToMany here.
 
 
 

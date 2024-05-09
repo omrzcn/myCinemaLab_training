@@ -4,10 +4,10 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
-@Table(name = "location")
 @Data
 @NoArgsConstructor
 public class Location {
@@ -16,6 +16,8 @@ public class Location {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private BigDecimal latitude;
+    private BigDecimal longitude;
     private String address;
     private String postalCode;
     private String country;
@@ -23,10 +25,13 @@ public class Location {
     private String city;
 
 //    @OneToMany(mappedBy = "location")
-//    private List<Cinema> cinemaList;   we dont have to write this because we used ManyToOne in Cinema class
+//    private List<Cinema> cinemaList;  // we dont have to write this because we used ManyToOne in Cinema class
 
-    public Location(String name, String address, String postalCode, String country, String state, String city) {
+
+    public Location(String name, BigDecimal latitude, BigDecimal longitude, String address, String postalCode, String country, String state, String city) {
         this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.address = address;
         this.postalCode = postalCode;
         this.country = country;
