@@ -28,7 +28,7 @@ public interface MovieCinemaRepository extends JpaRepository<MovieCinema, Long> 
 //    List<MovieCinema> findByDateTimeAfter(LocalDateTime dateTime);
 
     //Write a derived query to find the top 3 expensive movies
-
+    List<MovieCinema> findTop3ByOrderByMovie_PriceDesc();
 
     //Write a derived query to list all movie cinemas that contain a specific movie name
     List<MovieCinema> findByMovie_Name(String name);
