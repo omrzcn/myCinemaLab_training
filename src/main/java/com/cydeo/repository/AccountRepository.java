@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.AbstractCollection;
 import java.util.List;
 
 @Repository
@@ -32,34 +33,38 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 
 
     //Write a derived query to list all accounts between a range of ages
-
-
+    List<Account> findByAgeBetween(int age1,int age2);
     //Write a derived query to list all accounts where the beginning of the address contains the keyword
 
 
     //Write a derived query to sort the list of accounts with age
-
+    List<Account> findByOrderByAgeDesc();
 
     // ------------------- JPQL QUERIES ------------------- //
 
     //Write a JPQL query that returns all accounts
-
+    @Query("select a from Account a ")
+    List<Account> retrieveAllAccounts();
 
     //Write a JPQL query to list all admin accounts
-
-
+    @Query("select a from Account a where a.role=?1")
+    List<Account> retrieveAdminAccounts(UserRole role);
     //Write a JPQL query to sort all accounts with age
-
+    @Query("select a from Account a order by a.age desc ")
+    List<Account> retrieveSortedAccountByAge();
 
     // ------------------- Native QUERIES ------------------- //
 
     //Write a native query to read all accounts with an age lower than a specific value
-
-
+    @Query(value = "select * from account_details  where age < ?1",nativeQuery = true)
+    List<Account> retrieveAccountAgeLowerThan(int age);
     //Write a native query to read all accounts that a specific value can be containable in the name, address, country, state city
-
-
+    @Query(value = "select * from account_details where name like %?1% or address like %?1% or country like %?1% or state like %?1% or city like %?1%",nativeQuery = true)
+    List<Account> retrieveAccountByValue(String pattern);
     //Write a native query to read all accounts with an age higher than a specific value
+
+    @Query(value = "select * from account_details where age > ?1",nativeQuery = true)
+    List<Account> retrieveAccountByAgeHigherThan(int age);
 
 
 }
