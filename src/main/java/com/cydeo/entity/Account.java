@@ -4,11 +4,14 @@ import com.cydeo.enums.MovieState;
 import com.cydeo.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "account_details")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Account {
 
@@ -35,5 +38,18 @@ public class Account {
     @OneToOne(mappedBy = "account")
     private User user;
 
-
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", address='" + address + '\'' +
+                ", age=" + age +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", name='" + name + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", role=" + role +
+                ", state='" + state + '\'' +
+                '}';
+    }
 }

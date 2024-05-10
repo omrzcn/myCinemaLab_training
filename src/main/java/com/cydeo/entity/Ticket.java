@@ -2,13 +2,16 @@ package com.cydeo.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 public class Ticket {
 
     @Id
@@ -31,5 +34,15 @@ public class Ticket {
         this.dateTime = dateTime;
         this.seatNumber = seatNumber;
         this.rowNumber = rowNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "id=" + id +
+                ", dateTime=" + dateTime +
+                ", seatNumber=" + seatNumber +
+                ", rowNumber=" + rowNumber +
+                '}';
     }
 }

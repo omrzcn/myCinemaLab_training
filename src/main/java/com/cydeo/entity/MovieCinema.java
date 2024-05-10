@@ -2,13 +2,17 @@ package com.cydeo.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class MovieCinema {
 
@@ -18,7 +22,7 @@ public class MovieCinema {
 
 
     @Column(columnDefinition = "TIMESTAMP")
-    private LocalDate dateTime;
+    private LocalDateTime dateTime;
 
     // ManyToMany is Fetch.LAZY, so we dont have to write anything
     // ManyToOne is Fetch.EAGER, so we can write Fetch.LAZY
@@ -39,9 +43,17 @@ public class MovieCinema {
 
 
 
-    public MovieCinema(LocalDate dateTime, Cinema cinema, Movie movie) {
+    public MovieCinema(LocalDateTime dateTime, Cinema cinema, Movie movie) {
         this.dateTime = dateTime;
         this.cinema = cinema;
         this.movie = movie;
+    }
+
+    @Override
+    public String toString() {
+        return "MovieCinema{" +
+                "id=" + id +
+                ", dateTime=" + dateTime +
+                '}';
     }
 }

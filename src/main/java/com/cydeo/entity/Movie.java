@@ -4,14 +4,17 @@ import com.cydeo.enums.MovieState;
 import com.cydeo.enums.MovieType;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Movie {
     @Id
@@ -55,5 +58,18 @@ public class Movie {
         this.state = state;
         this.summary = summary;
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id=" + id +
+                ", duration=" + duration +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", releaseDate=" + releaseDate +
+                ", state=" + state +
+                ", summary='" + summary + '\'' +
+                '}';
     }
 }
